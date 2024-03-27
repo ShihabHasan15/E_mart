@@ -32,7 +32,11 @@ ArrayList<SlideModel> imageList = new ArrayList<>();
 
         recycle = myView.findViewById(R.id.recycle);
 
-        recycle.setLayoutManager(new GridLayoutManager(getContext(), GridLayoutManager.VERTICAL));
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2);
+
+        recycle.setLayoutManager(gridLayoutManager);
+
+
         recycleAdapter adapter = new recycleAdapter();
         recycle.setAdapter(adapter);
 
