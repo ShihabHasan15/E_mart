@@ -7,6 +7,7 @@
     tools:context=".MainActivity"
     android:orientation="vertical"
     tools:openDrawer="start"
+    android:id="@+id/drawer"
     >
 
 
@@ -22,11 +23,15 @@
                 android:layout_height="wrap_content">
 
                 <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:background="#059FB3"
-                    app:navigationIcon="@drawable/baseline_shopping_cart_24"
-                    app:menu="@menu/all_menu"
+                    app:navigationIcon="@drawable/baseline_account_circle_24"
+                    app:title="E Mart"
+                    app:titleTextColor="@color/white"
+                    style="@style/Widget.MaterialComponents.Toolbar"
+                    app:subtitle="Hello"
                     />
 
             </com.google.android.material.appbar.AppBarLayout>
@@ -39,6 +44,7 @@
                 />
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/btm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
@@ -54,9 +60,11 @@
 
 
     <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigationView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header"
         />
 
 
