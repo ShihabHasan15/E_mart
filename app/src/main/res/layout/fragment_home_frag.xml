@@ -6,6 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".home_frag"
     android:background="@color/white"
+
     >
 
 
@@ -23,6 +24,24 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             >
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Search"
+                android:layout_margin="10dp"
+                app:startIconDrawable="@drawable/star"
+                app:hintAnimationEnabled="false"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="5dp"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -330,56 +349,65 @@
             </LinearLayout>
 
             <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#3E00BCD4"
+                android:background="#FBC02D"
                 app:tabSelectedTextColor="#009688"
                 app:tabIndicatorColor="#00BCD4"
                 app:tabMode="scrollable"
                 >
                 <com.google.android.material.tabs.TabItem
+                    android:id="@+id/all_item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="All"
                     />
 
                 <com.google.android.material.tabs.TabItem
+                    android:id="@+id/grocery_item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Grocery"
                     />
 
                 <com.google.android.material.tabs.TabItem
+                    android:id="@+id/gadgets_item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Gadgets"
                     />
 
                 <com.google.android.material.tabs.TabItem
+                    android:id="@+id/home_item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Home Appliances"
                     />
 
                 <com.google.android.material.tabs.TabItem
+                    android:id="@+id/gym_item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Gym Instruments"
                     />
 
                 <com.google.android.material.tabs.TabItem
+                    android:id="@+id/womens_item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Womens Fashion"
                     />
 
                 <com.google.android.material.tabs.TabItem
+                    android:id="@+id/mens_item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Mens Fashion"
                     />
 
                 <com.google.android.material.tabs.TabItem
+                    android:id="@+id/cosmetics_item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Cosmetics"

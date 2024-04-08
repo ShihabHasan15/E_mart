@@ -12,13 +12,15 @@
         android:gravity="center"
         android:background="@color/white"
         >
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/animationView"
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="200dp"
-            app:lottie_rawRes="@raw/not_found"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"/>
+            android:layout_height="wrap_content"
+            android:text="No Messeges Yet"
+            android:fontFamily="@font/oswald_bold"
+            android:textSize="25sp"
+            android:textColor="#90000000"
+            />
+
     </LinearLayout>
 
 
