@@ -1,6 +1,7 @@
 package com.shibustudio.emart;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
@@ -8,6 +9,7 @@ import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -66,25 +68,16 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if (item.getItemId()==R.id.home){
-                    FragmentManager fragmentManager = getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.frame, new home_frag());
-                    fragmentTransaction.commit();
-                    toolbar.setSubtitle("Home");
-                }
-                if (item.getItemId()==R.id.messege){
-                    getSupportFragmentManager().beginTransaction().replace(R.id.frame, new MessegeFrag())
-                    .commit();
-                    toolbar.setSubtitle("Messege");
-                }if (item.getItemId()==R.id.cart){
-                    getSupportFragmentManager().beginTransaction().replace(R.id.frame, new MessegeFrag())
-                    .commit();
-                    toolbar.setSubtitle("Carts");
-                }if (item.getItemId()==R.id.account){
-                    getSupportFragmentManager().beginTransaction().replace(R.id.frame, new AccountFrag())
-                    .commit();
-                    toolbar.setSubtitle("Account");
+
+                return true;
+            }
+        });
+
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                if (item.getItemId()==R.id.search_button){
+                    startActivity(new Intent(MainActivity.this, SearchActivity.class));
                 }
                 return true;
             }

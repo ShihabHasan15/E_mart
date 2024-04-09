@@ -8,7 +8,6 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardElevation="10dp"
         app:cardCornerRadius="10dp"
         android:layout_margin="10dp"
         android:padding="10dp"
@@ -58,8 +57,8 @@
 
         <ImageView
             android:id="@+id/product_image"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:src="@drawable/shihab"
             android:layout_marginTop="5dp"
             />
@@ -135,6 +134,9 @@
             android:id="@+id/cart_btn"
             android:foreground="?attr/selectableItemBackground"
             android:clickable="true"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="10dp"
+            android:layout_marginBottom="5dp"
             >
             <TextView
                 android:id="@+id/cart"

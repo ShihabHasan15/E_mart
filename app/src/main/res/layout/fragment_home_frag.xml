@@ -25,23 +25,6 @@
             android:orientation="vertical"
             >
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textField"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Search"
-                android:layout_margin="10dp"
-                app:startIconDrawable="@drawable/star"
-                app:hintAnimationEnabled="false"
-                >
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawablePadding="5dp"
-                    />
-
-            </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -352,7 +335,7 @@
                 android:id="@+id/tab"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#FBC02D"
+                android:background="@color/white"
                 app:tabSelectedTextColor="#009688"
                 app:tabIndicatorColor="#00BCD4"
                 app:tabMode="scrollable"

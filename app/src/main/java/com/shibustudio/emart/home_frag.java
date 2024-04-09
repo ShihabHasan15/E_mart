@@ -254,12 +254,21 @@ ArrayList<SlideModel> imageList = new ArrayList<>();
 
             String rating = getdata.get("rating");
             String stock = getdata.get("stock");
+            int previous_price = Integer.parseInt(getdata.get("price"));
+            double discountPercent = Double.parseDouble(getdata.get("discountPercentage"));
+
+            int discount_price = (int) (previous_price*(discountPercent/100));
+
+            int final_price = previous_price - discount_price;
+
 
             holder.product_name.setText(title);
             holder.description.setText(description);
             holder.brand_name.setText(brand);
             holder.rating.setText(rating);
             holder.stock.setText(stock);
+            holder.previous.setText(""+previous_price);
+            holder.price.setText(""+final_price);
 
             Picasso.get().load(thumbnail)
                     .placeholder(R.color.white)
