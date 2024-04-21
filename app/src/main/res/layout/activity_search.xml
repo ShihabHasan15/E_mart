@@ -8,18 +8,34 @@
     android:orientation="horizontal"
     android:background="@color/white"
     android:paddingLeft="10dp"
+    android:id="@+id/layout"
     >
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+    
     <ImageButton
         android:id="@+id/back_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:src="@drawable/back"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="25dp"
         />
 
-    <com.google.android.material.textfield.TextInputLayout
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/search"
+        android:layout_width="310dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        app:autoShowKeyboard="true"
+        android:layout_marginLeft="15dp"
+        app:queryHint="Search Products...."
+        android:background="@drawable/search_design"
+        app:iconifiedByDefault="false"
+        />
+    <!--<com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textField"
         android:layout_width="330dp"
         android:layout_height="50dp"
@@ -38,10 +54,10 @@
         android:layout_gravity="center_horizontal"
         >
 
-        <!--<com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            />-->
+            />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -49,5 +65,8 @@
             />
 
     </com.google.android.material.textfield.TextInputLayout>
+    -->
+
+</LinearLayout>
 
 </LinearLayout>

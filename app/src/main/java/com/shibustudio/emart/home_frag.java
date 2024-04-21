@@ -1,15 +1,27 @@
 package com.shibustudio.emart;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,23 +45,29 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import soup.neumorphism.NeumorphCardView;
+
 
 public class home_frag extends Fragment {
 
 ImageSlider imageSlider;
+
 RecyclerView recycle;
 
 TabLayout tab;
+
+LinearLayout delivery, grocery, gadgets, home_appliances, gym, womens_item, mens_item, cosmetics;
 
 HashMap<String, String> hashMap;
 
 ArrayList<HashMap<String, String>> arrayList = new ArrayList<>();
 
+TextView popular;
 
 
 ArrayList<SlideModel> imageList = new ArrayList<>();
 
-
+ProgressBar progress;
 
 
 
@@ -59,6 +77,96 @@ ArrayList<SlideModel> imageList = new ArrayList<>();
 
         View myView = inflater.inflate(R.layout.fragment_home_frag, container, false);
 
+        progress = myView.findViewById(R.id.progress);
+
+        delivery = myView.findViewById(R.id.delivery);
+        grocery = myView.findViewById(R.id.grocery);
+        gadgets = myView.findViewById(R.id.gadgets);
+        home_appliances = myView.findViewById(R.id.home_appliances);
+        gym = myView.findViewById(R.id.gym);
+        womens_item = myView.findViewById(R.id.womens_item);
+        mens_item = myView.findViewById(R.id.mens_item);
+        cosmetics = myView.findViewById(R.id.cosmetics);
+        popular = myView.findViewById(R.id.popular);
+
+        Animation scaleAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.scale_button);
+        Animation popular_anim = AnimationUtils.loadAnimation(getContext(), R.anim.popular_anim);
+        Animation breath_anim = AnimationUtils.loadAnimation(getContext(), R.anim.breath_anim);
+
+        popular.startAnimation(popular_anim);
+
+        int endColor = ContextCompat.getColor(getContext(), R.color.myColor);
+
+
+        try {
+            ObjectAnimator colorAnim = ObjectAnimator.ofObject(popular, "backgroundColor", new ArgbEvaluator(), Color.RED, endColor);
+            colorAnim.setDuration(2000);
+            colorAnim.setRepeatCount(ValueAnimator.INFINITE);
+            colorAnim.setRepeatMode(ValueAnimator.REVERSE);
+            colorAnim.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+//        delivery.startAnimation(breath_anim);
+
+        delivery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.startAnimation(scaleAnimation);
+//                delivery.startAnimation(breath_anim);
+            }
+        });
+
+
+        grocery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.startAnimation(scaleAnimation);
+            }
+        });
+
+        gadgets.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.startAnimation(scaleAnimation);
+            }
+        });
+
+        home_appliances.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.startAnimation(scaleAnimation);
+            }
+        });
+
+        gym.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.startAnimation(scaleAnimation);
+            }
+        });
+
+        womens_item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.startAnimation(scaleAnimation);
+            }
+        });
+
+        mens_item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.startAnimation(scaleAnimation);
+            }
+        });
+        
+        cosmetics.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.startAnimation(scaleAnimation);
+            }
+        });
 
 //rest api data fetching==================================================
 
@@ -70,6 +178,8 @@ ArrayList<SlideModel> imageList = new ArrayList<>();
                 null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+
+                progress.setVisibility(View.GONE);
 
                 try {
                     JSONArray products = response.getJSONArray("products");
@@ -116,7 +226,6 @@ ArrayList<SlideModel> imageList = new ArrayList<>();
 
 
 
-
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 }
@@ -124,7 +233,6 @@ ArrayList<SlideModel> imageList = new ArrayList<>();
                 //recyclerview===============================================================
 
                 recycle = myView.findViewById(R.id.recycle);
-
                 recycleAdapter adapter = new recycleAdapter();
                 recycle.setAdapter(adapter);
 
@@ -137,7 +245,7 @@ ArrayList<SlideModel> imageList = new ArrayList<>();
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                progress.setVisibility(View.GONE);
             }
         });
 
@@ -177,8 +285,17 @@ ArrayList<SlideModel> imageList = new ArrayList<>();
         tab = myView.findViewById(R.id.tab);
 
         tab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+
+                if (tab.getPosition()==1){
+
+                    Toast.makeText(getContext(), "Tab 2 Selected", Toast.LENGTH_SHORT).show();
+
+                } else if (tab.getPosition()==2) {
+                    recycle.getChildViewHolder(recycle.getChildAt(2));
+                }
 
             }
 
@@ -201,22 +318,25 @@ ArrayList<SlideModel> imageList = new ArrayList<>();
     }
 
 
+
+
     public class recycleAdapter extends RecyclerView.Adapter<recycleAdapter.recycleViewHolder>{
+
         ImageView product_image;
+
+
         public class recycleViewHolder extends RecyclerView.ViewHolder{
-
-            TextView product_name,brand_name, description, stock, price, previous, rating;
-            CardView cart_btn;
-
-
-
-
+            TextView product_name,brand_name, description, stock, price, previous, rating, cart_text;
+            NeumorphCardView cart_btn;
+            NeumorphCardView full_card;
 
             public recycleViewHolder(@NonNull View itemView) {
                 super(itemView);
 
                 cart_btn = itemView.findViewById(R.id.cart_btn);
                 product_image = itemView.findViewById(R.id.product_image);
+                full_card = itemView.findViewById(R.id.full_card);
+                cart_text = itemView.findViewById(R.id.cart_text);
 
                 product_name = itemView.findViewById(R.id.product_name);
                 brand_name = itemView.findViewById(R.id.brand_name);
@@ -226,25 +346,20 @@ ArrayList<SlideModel> imageList = new ArrayList<>();
                 previous = itemView.findViewById(R.id.previous);
                 rating = itemView.findViewById(R.id.rating);
 
-
-
             }
         }
-
         @NonNull
         @Override
-        public recycleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
+        public recycleAdapter.recycleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             LayoutInflater inflater = getLayoutInflater();
             View inflateView = inflater.inflate(R.layout.item_design, parent, false);
 
             return new recycleViewHolder(inflateView);
+
         }
 
         @Override
-        public void onBindViewHolder(@NonNull recycleViewHolder holder, int position) {
-
-
+        public void onBindViewHolder(@NonNull recycleAdapter.recycleViewHolder holder, int position) {
             HashMap<String, String> getdata = arrayList.get(position);
 
             String title = getdata.get("title");
@@ -262,29 +377,54 @@ ArrayList<SlideModel> imageList = new ArrayList<>();
             int final_price = previous_price - discount_price;
 
 
+            String previous = "<del>"+previous_price+"</del>";
+
+
+
             holder.product_name.setText(title);
             holder.description.setText(description);
             holder.brand_name.setText(brand);
             holder.rating.setText(rating);
             holder.stock.setText(stock);
-            holder.previous.setText(""+previous_price);
+            holder.previous.setText(Html.fromHtml(previous));
             holder.price.setText(""+final_price);
 
             Picasso.get().load(thumbnail)
                     .placeholder(R.color.white)
                     .into(product_image);
 
+            Animation anim = AnimationUtils.loadAnimation(getContext(), R.anim.scale_button);
+            Animation item_anim = AnimationUtils.loadAnimation(getContext(), R.anim.scale_button);
+
+            Typeface typeface = ResourcesCompat.getFont(getContext(), R.font.bebasneue_regular);
+
+            holder.cart_text.setTypeface(typeface);
+            holder.cart_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    v.startAnimation(anim);
+                    holder.cart_text.setText("Added");
+                }
+            });
+
+            holder.full_card.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    v.startAnimation(item_anim);
+                }
+            });
 
         }
 
         @Override
         public int getItemCount() {
-
             return arrayList.size();
         }
 
-
-
-
     }
+
+
+
+
+
 }

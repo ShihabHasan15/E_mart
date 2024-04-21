@@ -8,9 +8,11 @@
         android:id="@+id/search_button"
         android:icon="@drawable/search"
         app:showAsAction="always"
-        tools:ignore="MenuTitle" />
+        tools:ignore="MenuTitle"
+        />
 
     <item
+        android:id="@+id/user"
         android:icon="@drawable/user"
         app:showAsAction="always"
         tools:ignore="MenuTitle" />

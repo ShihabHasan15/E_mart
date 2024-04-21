@@ -6,15 +6,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".home_frag"
     android:background="@color/white"
-
     >
 
-
-<LinearLayout
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -46,11 +43,12 @@
 
             </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                app:cardElevation="15dp"
+                android:orientation="vertical"
+                android:background="@color/white"
                 >
 
                 <LinearLayout
@@ -64,8 +62,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Category"
-                    android:fontFamily="@font/oswald_bold"
-                    android:textSize="25sp"
+                    android:fontFamily="@font/cinzel_decorative_bold"
+                    android:textSize="15sp"
                     android:textColor="@color/black"
                     />
 
@@ -76,7 +74,10 @@
                         android:weightSum="4"
                         >
 
+
+
                         <LinearLayout
+                            android:id="@+id/delivery"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
@@ -88,23 +89,28 @@
                             >
 
                             <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:src="@drawable/free_shipping"
+                                android:layout_gravity="center"
                                 />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Free Delivery"
-                                android:fontFamily="@font/oswald_bold"
+                                android:fontFamily="@font/bebasneue_regular"
                                 android:textColor="@color/black"
-                                android:textSize="12sp"
+                                android:textSize="13sp"
+
                                 />
 
                         </LinearLayout>
 
+
+
                         <LinearLayout
+                            android:id="@+id/grocery"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
@@ -116,8 +122,8 @@
                             >
 
                             <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:src="@drawable/shopping_bag"
                                 />
 
@@ -125,14 +131,15 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Grocery"
-                                android:fontFamily="@font/oswald_bold"
+                                android:fontFamily="@font/bebasneue_regular"
                                 android:textColor="@color/black"
-                                android:textSize="12sp"
+                                android:textSize="13sp"
                                 />
 
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/gadgets"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
@@ -144,8 +151,8 @@
                             >
 
                             <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:src="@drawable/gadgets"
                                 />
 
@@ -153,14 +160,15 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Gadgets"
-                                android:fontFamily="@font/oswald_bold"
+                                android:fontFamily="@font/bebasneue_regular"
                                 android:textColor="@color/black"
-                                android:textSize="12sp"
+                                android:textSize="13sp"
                                 />
 
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/home_appliances"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
@@ -172,8 +180,8 @@
                             >
 
                             <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:src="@drawable/home_appliance"
                                 />
 
@@ -181,9 +189,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Home Appliances"
-                                android:fontFamily="@font/oswald_bold"
+                                android:fontFamily="@font/bebasneue_regular"
                                 android:textColor="@color/black"
-                                android:textSize="12sp"
+                                android:textSize="13sp"
                                 />
 
                         </LinearLayout>
@@ -198,6 +206,7 @@
                         >
 
                         <LinearLayout
+                            android:id="@+id/gym"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
@@ -206,11 +215,12 @@
                             android:layout_weight="1"
                             android:foreground="?attr/selectableItemBackground"
                             android:clickable="true"
+                            android:layout_marginRight="5dp"
                             >
 
                             <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:src="@drawable/gym"
                                 />
 
@@ -218,18 +228,20 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Gym Instruments"
-                                android:fontFamily="@font/oswald_bold"
+                                android:fontFamily="@font/bebasneue_regular"
                                 android:textColor="@color/black"
-                                android:textSize="12sp"
+                                android:textSize="13sp"
                                 />
 
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/womens_item"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:layout_marginTop="10dp"
+                            android:layout_marginRight="5dp"
                             android:gravity="center"
                             android:layout_weight="1"
                             android:foreground="?attr/selectableItemBackground"
@@ -237,8 +249,8 @@
                             >
 
                             <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:src="@drawable/fashion"
                                 />
 
@@ -246,18 +258,20 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Womens Fashion"
-                                android:fontFamily="@font/oswald_bold"
+                                android:fontFamily="@font/bebasneue_regular"
                                 android:textColor="@color/black"
-                                android:textSize="12sp"
+                                android:textSize="13sp"
                                 />
 
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/mens_item"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:layout_marginTop="10dp"
+                            android:layout_marginRight="5dp"
                             android:gravity="center"
                             android:layout_weight="1"
                             android:foreground="?attr/selectableItemBackground"
@@ -265,8 +279,8 @@
                             >
 
                             <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:src="@drawable/clothes"
                                 />
 
@@ -274,14 +288,15 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Mens Fashion"
-                                android:fontFamily="@font/oswald_bold"
+                                android:fontFamily="@font/bebasneue_regular"
                                 android:textColor="@color/black"
-                                android:textSize="12sp"
+                                android:textSize="13sp"
                                 />
 
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/cosmetics"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
@@ -293,8 +308,8 @@
                             >
 
                             <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:src="@drawable/skincare"
                                 />
 
@@ -302,9 +317,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Cosmetics"
-                                android:fontFamily="@font/oswald_bold"
+                                android:fontFamily="@font/bebasneue_regular"
                                 android:textColor="@color/black"
-                                android:textSize="12sp"
+                                android:textSize="13sp"
                                 />
 
                         </LinearLayout>
@@ -313,21 +328,37 @@
                         
 
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="20dp"
-                android:background="#12000000"
+                android:background="@color/white"
                 android:gravity="center"
+                android:orientation="horizontal"
                 >
+
+               <!-- <com.airbnb.lottie.LottieAnimationView
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    app:lottie_rawRes="@raw/hand_mic"
+                    app:lottie_autoPlay="true"
+                    app:lottie_repeatMode="restart"
+                    app:lottie_repeatCount="100"
+                    />-->
+
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/popular"
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
                     android:text="Popular Products"
-                    android:fontFamily="@font/oswald_bold"
-                    android:textSize="20sp"
+                    android:fontFamily="@font/bebasneue_regular"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/popular_design"
                     />
             </LinearLayout>
 
@@ -335,10 +366,12 @@
                 android:id="@+id/tab"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/white"
-                app:tabSelectedTextColor="#009688"
-                app:tabIndicatorColor="#00BCD4"
+                android:background="#FBC02D"
+                app:tabSelectedTextColor="@color/pink"
+                app:tabIndicatorColor="#EC7EA3"
                 app:tabMode="scrollable"
+                app:tabTextColor="@color/white"
+
                 >
                 <com.google.android.material.tabs.TabItem
                     android:id="@+id/all_item"
@@ -376,14 +409,14 @@
                     />
 
                 <com.google.android.material.tabs.TabItem
-                    android:id="@+id/womens_item"
+                    android:id="@+id/womens"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Womens Fashion"
                     />
 
                 <com.google.android.material.tabs.TabItem
-                    android:id="@+id/mens_item"
+                    android:id="@+id/mens"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Mens Fashion"
@@ -399,19 +432,29 @@
             </com.google.android.material.tabs.TabLayout>
 
 
+            <ProgressBar
+                android:id="@+id/progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:visibility="visible"
+                />
+
+
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/recycle"
                 android:nestedScrollingEnabled="false"
                 android:orientation="horizontal"
+                android:background="@color/white"
                 />
-
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-</LinearLayout>
+</RelativeLayout>
 
     
 

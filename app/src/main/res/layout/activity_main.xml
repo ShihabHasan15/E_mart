@@ -25,19 +25,24 @@
 
             <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                app:layout_scrollFlags="scroll|enterAlways"
+                >
                 <com.google.android.material.appbar.MaterialToolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:background="@color/white"
+                    android:layout_height="70dp"
+                    android:background="#ec407a"
                     app:navigationIcon="@drawable/rsz_menu"
+                    app:navigationIconTint="@color/white"
                     app:title="E Mart"
+                    app:titleTextAppearance="@style/Toolbar.TitleText"
                     app:titleMarginBottom="10dp"
-                    app:titleTextColor="@color/black"
+                    app:titleTextColor="@color/white"
                     style="@style/Widget.MaterialComponents.Toolbar"
                     app:menu="@menu/nav_menu"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                     />
 
             </com.google.android.material.appbar.AppBarLayout>
@@ -50,15 +55,18 @@
                 android:layout_above="@+id/btm"
                 />
 
+
+
            <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/btm"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_alignParentBottom="true"
                 app:menu="@menu/all_menu"
-                android:background="#FBC02D"
-                app:itemRippleColor="#FFFF00"
-                app:itemActiveIndicatorStyle="@color/black"
+                android:background="@color/white"
+                app:itemIconTint="@drawable/state_color"
+                app:itemActiveIndicatorStyle="@color/grey"
+                app:itemRippleColor="@color/grey"
                 />
 
 
@@ -77,7 +85,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
-        app:menu="@menu/nav_menu"
+        app:menu="@menu/drawer_menu"
+        android:backgroundTint="@color/white"
         />
 
 

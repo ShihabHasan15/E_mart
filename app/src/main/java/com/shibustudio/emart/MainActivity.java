@@ -14,6 +14,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -29,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     NavigationView navigationView;
 
     BottomNavigationView bottomNavigationView;
+
+    LottieAnimationView progress;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -57,6 +60,12 @@ public class MainActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.navigationView);
         bottomNavigationView = findViewById(R.id.btm);
 
+        bottomNavigationView.getOrCreateBadge(R.id.messege).setNumber(3);
+        bottomNavigationView.getOrCreateBadge(R.id.cart).setNumber(3);
+
+
+        drawer.setScrimColor(getResources().getColor(android.R.color.transparent));
+
         //============================================================================
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -79,11 +88,35 @@ public class MainActivity extends AppCompatActivity {
                 if (item.getItemId()==R.id.search_button){
                     startActivity(new Intent(MainActivity.this, SearchActivity.class));
                 }
+
+                if (item.getItemId()==R.id.user){
+                    startActivity(new Intent(MainActivity.this, Account_activity.class));
+                }
                 return true;
             }
         });
 
-
-
     }
+
+//    @SuppressLint("MissingSuperCall")
+//    @Override
+//    public void onBackPressed() {
+////        super.onBackPressed();
+//        new AlertDialog.Builder(MainActivity.this)
+//                .setTitle("Exit")
+//                .setMessage("Do you want to exit?")
+//                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        finish();
+//                    }
+//                })
+//                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//
+//                    }
+//                })
+//                .show();
+//    }
 }

@@ -4,4 +4,11 @@
         <!-- Customize your dark theme here. -->
         <item name="colorPrimary">@color/white</item>
     </style>
+
+    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/bebasneue_regular</item>
+    </style>
+
 </resources>

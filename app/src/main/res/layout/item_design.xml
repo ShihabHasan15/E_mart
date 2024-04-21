@@ -5,14 +5,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <androidx.cardview.widget.CardView
+    <soup.neumorphism.NeumorphCardView
+        android:id="@+id/full_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="10dp"
         android:layout_margin="10dp"
         android:padding="10dp"
-        android:foreground="?attr/selectableItemBackground"
         android:clickable="true"
+        app:neumorph_lightSource="leftTop"
+        app:neumorph_shapeType="flat"
+        app:neumorph_strokeColor="@color/pink"
+        app:neumorph_strokeWidth="1dp"
+        android:outlineProvider="none"
         >
     <LinearLayout
         android:layout_width="match_parent"
@@ -57,8 +62,8 @@
 
         <ImageView
             android:id="@+id/product_image"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:src="@drawable/shihab"
             android:layout_marginTop="5dp"
             />
@@ -87,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:text="stock"
                 android:drawableStart="@drawable/small_cart"
-                android:textSize="12sp"
+                android:textSize="10sp"
                 android:textColor="@color/black"
                 android:maxLines="1"
                 android:drawablePadding="7dp"
@@ -98,7 +103,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Price"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:fontFamily="@font/oswald_bold"
                 android:padding="10dp"
                 android:textColor="@color/black"
@@ -109,7 +114,7 @@
                 android:id="@+id/previous"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="previous"
+                android:text="@string/previous"
                 android:textSize="10sp"
                 android:textColor="@color/black"
                 android:maxLines="1"
@@ -126,34 +131,32 @@
             android:textColor="@color/black"
             android:layout_marginBottom="10dp"
             android:drawablePadding="7dp"
+            android:textSize="12sp"
             />
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <soup.neumorphism.NeumorphCardView
             android:id="@+id/cart_btn"
-            android:foreground="?attr/selectableItemBackground"
-            android:clickable="true"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="10dp"
-            android:layout_marginBottom="5dp"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            app:neumorph_backgroundColor="#FBC02D"
+            style="?attr/selectableItemBackground"
             >
+
             <TextView
-                android:id="@+id/cart"
+                android:id="@+id/cart_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add To Cart"
-                android:background="#FBC02D"
-                android:textColor="@color/black"
-                android:drawableStart="@drawable/small_cart"
-                android:padding="5dp"
-                android:drawablePadding="7dp"
+                android:text="Add to Cart"
+                android:layout_gravity="center"
+                android:textColor="@color/pink"
+                android:textStyle="bold"
                 />
-        </androidx.cardview.widget.CardView>
+
+        </soup.neumorphism.NeumorphCardView>
 
     </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
+    </soup.neumorphism.NeumorphCardView>
 
 
 </LinearLayout>
