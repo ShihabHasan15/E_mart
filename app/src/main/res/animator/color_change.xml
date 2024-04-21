@@ -1,0 +1,12 @@
+<!-- res/animator/change_color.xml -->
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <objectAnimator
+        android:duration="2000"
+        android:propertyName="backgroundColor"
+        android:valueFrom="#FF6200EE"
+    android:valueTo="#FF018786"
+    android:valueType="intType"
+    android:repeatCount="infinite"
+    android:repeatMode="reverse"
+    android:interpolator="@android:interpolator/linear"/>
+</set>
