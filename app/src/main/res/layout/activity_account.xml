@@ -19,7 +19,8 @@
             android:id="@+id/profile_image"
             android:layout_width="96dp"
             android:layout_height="96dp"
-            android:src="@drawable/profile"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/shihab"
             android:layout_gravity="center_horizontal"
             />
 

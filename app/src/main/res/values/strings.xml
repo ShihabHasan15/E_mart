@@ -5,4 +5,7 @@
     <string name="open_drawer">Drawer opened</string>
     <string name="close_drawer">Drawer closed</string>
     <string name="previous"><del>previous</del></string>
+    <string name="details">
+        Biggest Sale of the year going on biggest fashion brands!! grab your products as soon as possible
+    </string>
 </resources>

@@ -3,11 +3,15 @@ package com.shibustudio.emart;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -17,6 +21,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     NavigationView navigationView;
 
-    BottomNavigationView bottomNavigationView;
+    public static BottomNavigationView bottomNavigationView;
 
     LottieAnimationView progress;
 
@@ -60,8 +65,7 @@ public class MainActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.navigationView);
         bottomNavigationView = findViewById(R.id.btm);
 
-        bottomNavigationView.getOrCreateBadge(R.id.messege).setNumber(3);
-        bottomNavigationView.getOrCreateBadge(R.id.cart).setNumber(3);
+
 
 
         drawer.setScrimColor(getResources().getColor(android.R.color.transparent));
@@ -78,6 +82,33 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
+                if (item.getItemId()==R.id.home){
+
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.frame, new home_frag());
+                    fragmentTransaction.commit();
+
+                }else if (item.getItemId()==R.id.notification){
+
+                    bottomNavigationView.removeBadge(R.id.notification);
+
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.frame, new MessegeFrag());
+                    fragmentTransaction.commit();
+
+                } else if (item.getItemId()==R.id.account) {
+
+
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.frame, new userFrag());
+                    fragmentTransaction.commit();
+
+
+                }
+
                 return true;
             }
         });
@@ -89,8 +120,10 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(new Intent(MainActivity.this, SearchActivity.class));
                 }
 
-                if (item.getItemId()==R.id.user){
-                    startActivity(new Intent(MainActivity.this, Account_activity.class));
+                if (item.getItemId()==R.id.cart){
+
+                    startActivity(new Intent(MainActivity.this, Cart_activity.class));
+
                 }
                 return true;
             }
@@ -98,25 +131,50 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-//    @SuppressLint("MissingSuperCall")
-//    @Override
-//    public void onBackPressed() {
-////        super.onBackPressed();
-//        new AlertDialog.Builder(MainActivity.this)
-//                .setTitle("Exit")
-//                .setMessage("Do you want to exit?")
-//                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        finish();
-//                    }
-//                })
-//                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//
-//                    }
-//                })
-//                .show();
-//    }
+    @SuppressLint({"MissingSuperCall"})
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+// ...Irrelevant code for customizing the buttons and title
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.exit_dialog, null);
+
+
+
+        dialogBuilder.setView(dialogView);
+
+        MaterialButton yes = dialogView.findViewById(R.id.yes);
+        MaterialButton no = dialogView.findViewById(R.id.no);
+
+
+
+        AlertDialog alertDialog = dialogBuilder.create();
+
+        alertDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+
+
+//        alertDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+
+        alertDialog.show();
+
+
+
+
+    }
 }

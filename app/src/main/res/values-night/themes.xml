@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.EMart" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
-        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimary">#FBC02D</item>
     </style>
 
     <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">

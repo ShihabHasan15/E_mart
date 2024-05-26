@@ -13,18 +13,12 @@
         />
 
     <item
-        android:id="@+id/messege"
+        android:id="@+id/notification"
         android:icon="@drawable/notification"
         app:showAsAction="always"
         android:iconTint="@color/white"
         tools:ignore="MenuTitle" />
 
-    <item
-        android:id="@+id/cart"
-        android:icon="@drawable/cart"
-        app:showAsAction="always"
-        android:iconTint="@color/white"
-        tools:ignore="MenuTitle" />
 
     <item
         android:id="@+id/account"

@@ -24,6 +24,7 @@
 
 
             <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -33,7 +34,7 @@
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
-                    android:background="#ec407a"
+                    android:background="@color/pinkish"
                     app:navigationIcon="@drawable/rsz_menu"
                     app:navigationIconTint="@color/white"
                     app:title="E Mart"

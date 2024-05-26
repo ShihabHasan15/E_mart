@@ -3,34 +3,37 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:id="@+id/item"
+    >
 
-    <soup.neumorphism.NeumorphCardView
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/full_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="10dp"
         android:layout_margin="10dp"
+        app:cardElevation="10dp"
         android:padding="10dp"
         android:clickable="true"
-        app:neumorph_lightSource="leftTop"
-        app:neumorph_shapeType="flat"
-        app:neumorph_strokeColor="@color/pink"
-        app:neumorph_strokeWidth="1dp"
-        android:outlineProvider="none"
+        android:backgroundTint="@color/white"
+        android:background="@drawable/popular_design"
         >
     <LinearLayout
+        android:id="@+id/product_body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
         android:padding="10dp"
+        android:background="@color/white"
         >
         <TextView
             android:id="@+id/product_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/oswald_bold"
+            android:fontFamily="@font/bebasneue_regular"
             android:text="Product_name"
             android:textSize="20sp"
             android:textColor="@color/black"
@@ -104,9 +107,9 @@
                 android:layout_height="wrap_content"
                 android:text="Price"
                 android:textSize="15sp"
-                android:fontFamily="@font/oswald_bold"
+                android:fontFamily="@font/bebasneue_regular"
                 android:padding="10dp"
-                android:textColor="@color/black"
+                android:textColor="@color/pinkish"
                 android:maxLines="1"
                 />
 
@@ -156,7 +159,7 @@
 
     </LinearLayout>
 
-    </soup.neumorphism.NeumorphCardView>
+    </com.google.android.material.card.MaterialCardView>
 
 
 </LinearLayout>
