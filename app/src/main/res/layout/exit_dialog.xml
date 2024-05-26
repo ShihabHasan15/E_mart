@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    >
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:neumorph_shapeType="flat"
+        app:neumorph_backgroundColor="@color/white"
+        app:cardCornerRadius="20dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Exit"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                android:fontFamily="@font/bebasneue_regular"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Do you want to exit?"
+                android:textColor="@color/black"
+                android:fontFamily="@font/bebasneue_regular"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:textSize="18dp"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="end"
+                >
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/yes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="Yes"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:textSize="15sp"
+                app:strokeColor="@color/black"
+                android:backgroundTint="#FB2D4C"
+                app:strokeWidth="2dp"
+                android:textColor="@color/white"
+                app:shapeAppearance="@style/ThemeOverlay.Material3.AutoCompleteTextView.FilledBox"
+                app:cornerRadius="10dp"
+                />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No"
+                android:textSize="15sp"
+                app:shapeAppearance="@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox"
+                android:textColor="@color/black"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:layout_marginLeft="30dp"
+                app:strokeColor="@color/black"
+                app:strokeWidth="2dp"
+                android:backgroundTint="@color/myColor"
+                app:cornerRadius="10dp"
+                />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
