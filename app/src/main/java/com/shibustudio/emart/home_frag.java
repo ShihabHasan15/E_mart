@@ -5,10 +5,8 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -59,6 +57,8 @@ HashMap<String, String> hashMap;
 public static ArrayList<HashMap<String, String>> arrayList = new ArrayList<>();
 NeumorphTextView popular;
 HashMap<Integer, String> imageMap;
+HashMap<String, String> review_map;
+public static ArrayList<HashMap<String, String>> review_list = new ArrayList<>();
 public static ArrayList<HashMap<Integer, String>> imageLinks = new ArrayList<>();
 ArrayList<SlideModel> imageList = new ArrayList<>();
 ProgressBar progress;
@@ -182,13 +182,16 @@ ProgressBar progress;
 
                         JSONObject item_info = products.getJSONObject(i);
 
-//                        imageMap = new HashMap<>();
+                        imageMap = new HashMap<>();
 
                         String title = item_info.getString("title");
                         String des = item_info.getString("description");
 //                        String brand = item_info.getString("brand");
                         String category = item_info.getString("category");
                         String thumbnail = item_info.getString("thumbnail");
+                        String warranty = item_info.getString("warrantyInformation");
+                        String shipping = item_info.getString("shippingInformation");
+                        String availability = item_info.getString("availabilityStatus");
 
                         int id = item_info.getInt("id");
                         double price = item_info.getDouble("price");
@@ -197,9 +200,23 @@ ProgressBar progress;
                         int stock = item_info.getInt("stock");
 
                         JSONArray product_images = item_info.getJSONArray("images");
+                        JSONArray reviews = item_info.getJSONArray("reviews");
 
-                        for (int j=0; j<product_images.length(); j++){
-                            String image = product_images.getString(j);
+                        for (int j=0; j<reviews.length(); j++){
+                            JSONObject review_object = reviews.getJSONObject(j);
+                            String review_rating = review_object.getString("rating");
+                            String review_comment = review_object.getString("comment");
+                            String review_date = review_object.getString("date");
+                            String review_name = review_object.getString("reviewerName");
+
+                            review_map = new HashMap<>();
+
+                            review_map.put("review_rating", ""+review_rating);
+                            review_map.put("review_comment", ""+review_comment);
+                            review_map.put("review_date", ""+review_date);
+                            review_map.put("reviewer_name", ""+review_name);
+
+                            review_list.add(review_map);
                         }
 
 
@@ -211,6 +228,9 @@ ProgressBar progress;
 //                        hashMap.put("brand", ""+brand);
                         hashMap.put("category", ""+category);
                         hashMap.put("thumbnail", ""+thumbnail);
+                        hashMap.put("warrantyInformation", ""+warranty);
+                        hashMap.put("shippingInformation", ""+shipping);
+                        hashMap.put("availabilityStatus", ""+availability);
 
                         hashMap.put("id", ""+id);
                         hashMap.put("price", ""+price);
@@ -220,12 +240,12 @@ ProgressBar progress;
 
 
 
-//                        for (int j=0; j<product_images.length(); j++){
-////                            imageMap.put(j, product_images.getString(j));
-//                        }
+                        for (int j=0; j<product_images.length(); j++){
+                            imageMap.put(j, product_images.getString(j));
+                        }
 
 
-
+                        imageLinks.add(imageMap);
                         arrayList.add(hashMap);
                     }
 
@@ -326,12 +346,27 @@ ProgressBar progress;
         public void onBindViewHolder(@NonNull recycleAdapter.recycleViewHolder holder, int position) {
 
             HashMap<String, String> getdata = arrayList.get(position);
-//            HashMap<Integer, String> getImages = imageLinks.get(position);
+            HashMap<Integer, String> getImages = imageLinks.get(position);
+            HashMap<String, String> review = review_list.get(position);
+
+            //reviews
+            String review_rating = review.get("review_rating");
+            String review_comment = review.get("review_comment");
+            String review_date = review.get("review_date");
+            String reviewer_name = review.get("reviewer_name");
+            //
+
+
+
 
             String title = getdata.get("title");
             String description = getdata.get("description");
 //            String brand = getdata.get("brand");
             String thumbnail = getdata.get("thumbnail");
+            String category = getdata.get("category");
+            String product_warranty = getdata.get("warrantyInformation");
+            String shipping_details = getdata.get("shippingInformation");
+            String availability_status = getdata.get("availabilityStatus");
 
             String image1 = getdata.get("img1");
             String image2 = getdata.get("img2");
@@ -388,15 +423,44 @@ ProgressBar progress;
                 }
             });
 
+
+
             holder.full_card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     v.startAnimation(item_anim);
 
-                    Bitmap imageBitmap = ((BitmapDrawable) product_image.getDrawable()).getBitmap();
-                    itemFull.fullimage = imageBitmap;
+                    itemFull.slide1 = "";
+                    itemFull.slide2 = "";
+                    itemFull.slide3 = "";
 
-                    itemFull.TITLE = title;
+                    itemFull.rating = Float.parseFloat(rating);
+
+
+//                    Bitmap imageBitmap = ((BitmapDrawable) product_image.getDrawable()).getBitmap();
+//                    itemFull.fullimage = imageBitmap;
+//
+                    itemFull.TITLE = description;
+                    itemFull.short_title_text = title;
+                    itemFull.category_txt = category;
+                    itemFull.warranty_txt = product_warranty;
+                    itemFull.shipping_txt = shipping_details;
+                    itemFull.availbility_info = availability_status;
+
+                    String full_image = getImages.get(0);
+                    itemFull.image = full_image;
+
+
+                    for (int i=0; i<getImages.size(); i++){
+                        String slideimg = getImages.get(i);
+                        if (i==0){
+                            itemFull.slide1 = slideimg;
+                        } else if (i==1 && !slideimg.isEmpty()) {
+                            itemFull.slide2 = slideimg;
+                        } else if (i==2 && !slideimg.isEmpty()) {
+                            itemFull.slide3 = slideimg;
+                        }
+                    }
 
                     startActivity(new Intent(getContext(), itemFull.class));
                 }

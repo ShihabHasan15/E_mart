@@ -10,8 +10,6 @@
     android:id="@+id/drawer"
     >
 
-
-
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -89,8 +87,5 @@
         app:menu="@menu/drawer_menu"
         android:backgroundTint="@color/white"
         />
-
-
-
 
 </androidx.drawerlayout.widget.DrawerLayout>
