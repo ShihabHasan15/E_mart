@@ -58,8 +58,9 @@ public static ArrayList<HashMap<String, String>> arrayList = new ArrayList<>();
 NeumorphTextView popular;
 HashMap<Integer, String> imageMap;
 HashMap<String, String> review_map;
-public static ArrayList<HashMap<String, String>> review_list = new ArrayList<>();
+ArrayList<HashMap<String, String>> review_list = new ArrayList<>();
 public static ArrayList<HashMap<Integer, String>> imageLinks = new ArrayList<>();
+public static ArrayList<ArrayList<HashMap<String, String>>> product_all_review_list = new ArrayList<>();
 ArrayList<SlideModel> imageList = new ArrayList<>();
 ProgressBar progress;
 
@@ -192,6 +193,8 @@ ProgressBar progress;
                         String warranty = item_info.getString("warrantyInformation");
                         String shipping = item_info.getString("shippingInformation");
                         String availability = item_info.getString("availabilityStatus");
+                        String return_policy = item_info.getString("returnPolicy");
+                        String minQuantity = item_info.getString("minimumOrderQuantity");
 
                         int id = item_info.getInt("id");
                         double price = item_info.getDouble("price");
@@ -200,25 +203,29 @@ ProgressBar progress;
                         int stock = item_info.getInt("stock");
 
                         JSONArray product_images = item_info.getJSONArray("images");
-                        JSONArray reviews = item_info.getJSONArray("reviews");
+//                        JSONArray reviews = item_info.getJSONArray("reviews");
 
-                        for (int j=0; j<reviews.length(); j++){
-                            JSONObject review_object = reviews.getJSONObject(j);
-                            String review_rating = review_object.getString("rating");
-                            String review_comment = review_object.getString("comment");
-                            String review_date = review_object.getString("date");
-                            String review_name = review_object.getString("reviewerName");
+//                            review_list = new ArrayList<>();
 
-                            review_map = new HashMap<>();
+//                            for (int k = 0; k < reviews.length(); k++) {
+//
+//                                JSONObject review_object = reviews.getJSONObject(k);
+//                                String review_rating = review_object.getString("rating");
+//                                String review_comment = review_object.getString("comment");
+//                                String review_date = review_object.getString("date");
+//                                String review_name = review_object.getString("reviewerName");
+//
+//                                review_map = new HashMap<>();
+//
+//                                review_map.put("review_rating", ""+review_rating);
+//                                review_map.put("review_comment", ""+review_comment);
+//                                review_map.put("review_date", ""+review_date);
+//                                review_map.put("reviewer_name", ""+review_name);
+//
+//                                review_list.add(review_map);
+//                            }
 
-                            review_map.put("review_rating", ""+review_rating);
-                            review_map.put("review_comment", ""+review_comment);
-                            review_map.put("review_date", ""+review_date);
-                            review_map.put("reviewer_name", ""+review_name);
-
-                            review_list.add(review_map);
-                        }
-
+//                        product_all_review_list.add(review_list);
 
                         //putting data with hashmap and arraylist
                         hashMap = new HashMap<>();
@@ -231,6 +238,8 @@ ProgressBar progress;
                         hashMap.put("warrantyInformation", ""+warranty);
                         hashMap.put("shippingInformation", ""+shipping);
                         hashMap.put("availabilityStatus", ""+availability);
+                        hashMap.put("return_policy", ""+return_policy);
+                        hashMap.put("minQuantity", ""+minQuantity);
 
                         hashMap.put("id", ""+id);
                         hashMap.put("price", ""+price);
@@ -347,13 +356,17 @@ ProgressBar progress;
 
             HashMap<String, String> getdata = arrayList.get(position);
             HashMap<Integer, String> getImages = imageLinks.get(position);
-            HashMap<String, String> review = review_list.get(position);
+//            ArrayList<HashMap<String, String>> getIndexedList = product_all_review_list.get(position);
+////            HashMap<String, String> review = review_list.get(position);
+//            HashMap<String, String> reviewItems = getIndexedList.get(position);
+
+
 
             //reviews
-            String review_rating = review.get("review_rating");
-            String review_comment = review.get("review_comment");
-            String review_date = review.get("review_date");
-            String reviewer_name = review.get("reviewer_name");
+//            String review_rating = reviewItems.get("review_rating");
+//            String review_comment = reviewItems.get("review_comment");
+//            String review_date = reviewItems.get("review_date");
+//            String reviewer_name = reviewItems.get("reviewer_name");
             //
 
 
@@ -367,6 +380,8 @@ ProgressBar progress;
             String product_warranty = getdata.get("warrantyInformation");
             String shipping_details = getdata.get("shippingInformation");
             String availability_status = getdata.get("availabilityStatus");
+            String return_policy = getdata.get("return_policy");
+            String minQuantity = getdata.get("minQuantity");
 
             String image1 = getdata.get("img1");
             String image2 = getdata.get("img2");
@@ -379,9 +394,9 @@ ProgressBar progress;
             double previous_price = Double.parseDouble(getdata.get("price"));
             double discountPercent = Double.parseDouble(getdata.get("discountPercentage"));
 
-            int discount_price = (int) (previous_price*(discountPercent/100));
+            double discount_price =  (previous_price*(discountPercent/100));
 
-            int final_price = (int) previous_price - discount_price;
+            int final_price = (int) (previous_price - discount_price);
 
             String previous = "<del>৳"+previous_price+"</del>";
 
@@ -423,48 +438,59 @@ ProgressBar progress;
                 }
             });
 
+               holder.full_card.setOnClickListener(new View.OnClickListener() {
+                   @Override
+                   public void onClick(View v) {
+                       v.startAnimation(item_anim);
 
 
-            holder.full_card.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    v.startAnimation(item_anim);
+                       itemFull.slide1 = "";
+                       itemFull.slide2 = "";
+                       itemFull.slide3 = "";
 
-                    itemFull.slide1 = "";
-                    itemFull.slide2 = "";
-                    itemFull.slide3 = "";
+                       itemFull.rating = Float.parseFloat(rating);
+//                       itemFull.review_rating = Float.parseFloat(review_rating);
 
-                    itemFull.rating = Float.parseFloat(rating);
+
+                       itemFull.previous_price = previous_price;
+                       itemFull.discount_amount = discount_price;
+                       itemFull.final_price = final_price;
 
 
 //                    Bitmap imageBitmap = ((BitmapDrawable) product_image.getDrawable()).getBitmap();
 //                    itemFull.fullimage = imageBitmap;
-//
-                    itemFull.TITLE = description;
-                    itemFull.short_title_text = title;
-                    itemFull.category_txt = category;
-                    itemFull.warranty_txt = product_warranty;
-                    itemFull.shipping_txt = shipping_details;
-                    itemFull.availbility_info = availability_status;
 
-                    String full_image = getImages.get(0);
-                    itemFull.image = full_image;
+                       itemFull.TITLE = description;
+                       itemFull.short_title_text = title;
+                       itemFull.category_txt = category;
+                       itemFull.warranty_txt = product_warranty;
+                       itemFull.shipping_txt = shipping_details;
+                       itemFull.availbility_info = availability_status;
+                       itemFull.policy_return = return_policy;
+                       itemFull.quantity = minQuantity;
+
+//                       itemFull.comment = review_comment;
+//                       itemFull.review_name = reviewer_name;
+
+                       String full_image = getImages.get(0);
+                       itemFull.image = full_image;
 
 
-                    for (int i=0; i<getImages.size(); i++){
-                        String slideimg = getImages.get(i);
-                        if (i==0){
-                            itemFull.slide1 = slideimg;
-                        } else if (i==1 && !slideimg.isEmpty()) {
-                            itemFull.slide2 = slideimg;
-                        } else if (i==2 && !slideimg.isEmpty()) {
-                            itemFull.slide3 = slideimg;
-                        }
-                    }
+                       for (int i=0; i<getImages.size(); i++){
+                           String slideimg = getImages.get(i);
+                           if (i==0){
+                               itemFull.slide1 = slideimg;
+                           } else if (i==1 && !slideimg.isEmpty()) {
+                               itemFull.slide2 = slideimg;
+                           } else if (i==2 && !slideimg.isEmpty()) {
+                               itemFull.slide3 = slideimg;
+                           }
+                       }
 
-                    startActivity(new Intent(getContext(), itemFull.class));
-                }
-            });
+                       startActivity(new Intent(getContext(), itemFull.class));
+                   }
+               });
+
         }
 
         @Override

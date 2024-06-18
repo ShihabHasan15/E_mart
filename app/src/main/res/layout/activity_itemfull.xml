@@ -45,19 +45,47 @@
 
     </RelativeLayout>
 
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="10dp"
+       >
+
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:id="@+id/titleText"
         android:text="Here is the title"
         android:textSize="18sp"
-        android:layout_marginTop="10dp"
         android:textColor="@color/black"
+        android:layout_alignParentLeft="true"
         android:maxLines="2"
         android:ellipsize="end"
         />
 
-    <LinearLayout
+       <TextView
+           android:id="@+id/product_price"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:textSize="20sp"
+           android:textColor="@color/pink"
+           android:layout_alignParentRight="true"
+           android:fontFamily="@font/bebasneue_regular"
+           android:text="100"/>
+
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:textSize="20sp"
+           android:textColor="@color/pink"
+           android:layout_toLeftOf="@+id/product_price"
+           android:fontFamily="@font/bebasneue_regular"
+           android:text="৳"/>
+
+        </RelativeLayout>
+
+
+        <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="10dp"
@@ -126,11 +154,13 @@
             android:textSize="20sp"
             android:fontFamily="@font/bebasneue_regular"
             android:layout_marginTop="10dp"/>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:layout_marginTop="20dp">
+
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -299,38 +329,80 @@
             android:layout_marginTop="5dp"
             />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            >
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Reviews And Ratings"
+            android:text="Return Policy:"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            />
+
+    <TextView
+            android:id="@+id/return_policy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginLeft="5dp"
+            />
+
+</LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
             android:layout_gravity="center"
-            android:fontFamily="@font/bebasneue_regular"
-            android:textSize="20sp"
-            android:layout_marginTop="25dp"
-            android:textColor="@color/pink"
-            android:layout_marginBottom="20dp"/>
+            android:layout_marginTop="5dp"
+            />
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="10dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
             >
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/user"
-                    />
-            </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Minimum Order Quantity:"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            />
 
-        </LinearLayout>
+    <TextView
+            android:id="@+id/miniQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginLeft="5dp"
+            />
+
+</LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="100dp"
+            />
+
 
     </LinearLayout>
+
+
 
     </LinearLayout>
 

@@ -1,6 +1,7 @@
 package com.shibustudio.emart;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -21,11 +22,11 @@ import java.util.ArrayList;
 public class itemFull extends AppCompatActivity {
     public static ImageView fullImage;
     ArrayList<SlideModel> fullImageList = new ArrayList<>();
-    TextView titleText, category, warranty, shipping, availability;
+    TextView titleText, category, warranty, shipping, availability, return_policy, miniQuantity, product_price;
     TextView short_title;
     public static String short_title_text = "", category_txt = "", warranty_txt = "", shipping_txt = "",
-    availbility_info = "";
-    RatingBar rate;
+    availbility_info = "", policy_return = "", quantity = "";
+    RatingBar rate, review_star;
     static ImageView img1, img2, img3;
     public static String slide1 = "",slide2 = "",slide3 = "";
     ImageButton back_button;
@@ -34,8 +35,10 @@ public class itemFull extends AppCompatActivity {
     public static String DES = "";
     public static String image = "";
     public static float rating = 0;
+    public static float review_rating = 0;
     public static ArrayList<String> IMAGE_LINKS = new ArrayList<>();
-
+    public static int final_price=0;
+    public static double previous_price=0, discount_amount=0;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +59,31 @@ public class itemFull extends AppCompatActivity {
         warranty = findViewById(R.id.waranty);
         shipping = findViewById(R.id.shipping);
         availability = findViewById(R.id.availability);
+        return_policy = findViewById(R.id.return_policy);
+        miniQuantity = findViewById(R.id.miniQuantity);
+        product_price = findViewById(R.id.product_price);
+
+//        reviewer = findViewById(R.id.reviewer_name);
+//        review_comment = findViewById(R.id.review_comment);
+//        review_star = findViewById(R.id.review_rating);
 
         buy_button = findViewById(R.id.buy_button);
         wishlist_button = findViewById(R.id.wishlist_button);
+
+
+
+
+        rate.setRating(rating);
+        short_title.setText(short_title_text);
+        category.setText(category_txt);
+        warranty.setText(warranty_txt);
+        shipping.setText(shipping_txt);
+        availability.setText(availbility_info);
+        return_policy.setText(policy_return);
+        miniQuantity.setText(quantity);
+        product_price.setText(""+final_price);
+//        reviewer.setText(reviewer_name);
+//        review_comment.setText(comment);
 
 
 
@@ -68,6 +93,18 @@ public class itemFull extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 v.startAnimation(scaleAnimation);
+
+                Place_order.b_price = previous_price;
+                Place_order.discount_amount = discount_amount;
+                Place_order.t_price = final_price;
+
+
+                Place_order.product_title = short_title_text;
+                Place_order.order_image = image;
+
+
+
+                startActivity(new Intent(getApplicationContext(), Place_order.class));
             }
         });
 
@@ -79,14 +116,6 @@ public class itemFull extends AppCompatActivity {
                 wishlist_button.setIconResource(R.drawable.filled_love);
             }
         });
-
-
-        rate.setRating(rating);
-        short_title.setText(short_title_text);
-        category.setText(category_txt);
-        warranty.setText(warranty_txt);
-        shipping.setText(shipping_txt);
-        availability.setText(availbility_info);
 
 
 
@@ -125,30 +154,4 @@ public class itemFull extends AppCompatActivity {
 
 
     }
-
-
-
-//    public class adapter extends BaseAdapter{
-//
-//        @Override
-//        public int getCount() {
-//            return home_frag.review_list.size();
-//        }
-//
-//        @Override
-//        public Object getItem(int position) {
-//            return null;
-//        }
-//
-//        @Override
-//        public long getItemId(int position) {
-//            return 0;
-//        }
-//
-//        @Override
-//        public View getView(int position, View convertView, ViewGroup parent) {
-//
-//            return null;
-//        }
-//    }
 }
